@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Tracker</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e1e2e;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Container Styles */
+        .container {
+            background: #27293d;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 400px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Heading Styles */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Paragraph */
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Input Styles */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Button Styles */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Message Display */
+        #message {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="homePage">
+        <h1>Hi, Welcome!!</h1>
+        <p>Ready to track sleep?</p>
+        <button onclick="showTracker()">Let's Dive In</button>
+    </div>
+    
+    <div class="container" id="trackerPage" style="display: none;">
+        <h1>Track Your Sleep</h1>
+        <label for="sleepHours">Hours Slept:</label>
+        <input type="number" id="sleepHours" min="0" max="24">
+        <button onclick="saveSleep()">Save</button>
+        <button onclick="showHome()">Go Back</button>
+        <p id="message"></p>
+    </div>
+    
+    <script>
+        function showTracker() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('trackerPage').style.display = 'block';
+        }
+
+        function showHome() {
+            document.getElementById('trackerPage').style.display = 'none';
+            document.getElementById('homePage').style.display = 'block';
+        }
+
+        function saveSleep() {
+            let hours = document.getElementById('sleepHours').value;
+            localStorage.setItem('sleepHours', hours);
+            document.getElementById('message').innerText = `You slept for ${hours} hours.`;
+        }
+    </script>
+</body>
+</html>
